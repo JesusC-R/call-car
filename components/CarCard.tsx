@@ -5,8 +5,11 @@ import Image from "next/image";
 import { CarProps } from "@/types";
 import { calculateCarRent } from "@/utils";
 import { CustomButton } from ".";
+import { useState } from "react";
 
 const CarCard: React.FC<CarProps> = ({ car }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const {
     city_mpg,
     class: string,
@@ -77,9 +80,14 @@ const CarCard: React.FC<CarProps> = ({ car }: any) => {
             text="View More"
             btnType="submit"
             containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+            textStyles="text-white text-[14px] leading-[17px] font-bold"
+            rightIcon="/right-arrow.svg"
+            handleClick={() => setIsOpen(true)}
           />
         </div>
       </div>
+
+      <CardDetails />
     </div>
   );
 };
