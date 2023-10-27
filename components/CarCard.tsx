@@ -4,8 +4,9 @@ import Image from "next/image";
 
 import { CarProps } from "@/types";
 import { calculateCarRent } from "@/utils";
-import { CustomButton } from ".";
+import { CardDetails, CustomButton } from ".";
 import { useState } from "react";
+
 
 const CarCard: React.FC<CarProps> = ({ car }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,7 +88,11 @@ const CarCard: React.FC<CarProps> = ({ car }: any) => {
         </div>
       </div>
 
-      <CardDetails />
+      <CardDetails
+        isOpen={isOpen}
+        closeModal={() => setIsOpen(false)}
+        car={car}
+      />
     </div>
   );
 };
