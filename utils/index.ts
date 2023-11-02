@@ -30,8 +30,11 @@ export const calculateCarRent = (city_mpg: number, year: number) => {
   // Calculate total rental rate per day;
   const rentalRatePerDay = basePricePerDay + milageRate + ageRate;
 
-  return rentalRatePerDay;
+  const roundedRentalRatePerDay = +rentalRatePerDay.toFixed(2);
+
+  return roundedRentalRatePerDay;
 };
+
 
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   const url = new URL("https://cdn.imagin.studio/getimage");
