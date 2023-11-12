@@ -30,6 +30,7 @@ export default function Home() {
         limit: limit || 10,
         model: model || "",
       });
+      setAllCars(result);
     } catch (error) {
       console.log(error);
     } finally {
@@ -39,7 +40,7 @@ export default function Home() {
 
   useEffect(() => {
     getCars();
-  }, [allCars, loading, manufacturer, model, fuel, year, limit]);
+  }, [manufacturer, model, fuel, year, limit]);
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
