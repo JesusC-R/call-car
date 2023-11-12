@@ -3,6 +3,7 @@
 import { Hero, CustomFilter, CarCard, SearchBar, ShowMore } from "@/components";
 import { fuels, yearsOfProduction } from "@/constants";
 import { fetchCars } from "@/utils";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
@@ -53,24 +54,37 @@ export default function Home() {
           <p>Explore the cars you might like</p>
         </div>
         <div className="home__filters">
-          <SearchBar />
+          <SearchBar setManufacturer={setManufacturer} setModel={setModel}/>
 
           <div className="home__filter-container">
-            <CustomFilter title="fuel" options={fuels} />
-            <CustomFilter title="year" options={yearsOfProduction} />
+            <CustomFilter title="fuel" options={fuels} setFilter={setFuel} />
+            <CustomFilter title="year" options={yearsOfProduction} setFilter={setYear}/>
           </div>
         </div>
 
-        {!isDataEmpty ? (
+        {allCars.length > 0 ? (
           <section>
             <div className="home__cars-wrapper">
               {allCars.map((car, i) => (
                 <CarCard key={i} car={car} />
               ))}
             </div>
+
+            {loading && (
+              <div>
+                <Image
+                  src="/loader.svg"
+                  alt="loader"
+                  width={50}
+                  height={50}
+                />
+              </div>
+            )}
+
             <ShowMore
-              pageNumber={(limit || 10) / 10}
+              pageNumber={limit / 10}
               isNext={(limit || 10) > allCars.length}
+              setLimit={setLimit}
             />
           </section>
         ) : (
