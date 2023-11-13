@@ -1,19 +1,12 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import { ShowMoreProps } from "@/types";
 import CustomButton from "./CustomeButton";
-import { updateSearchParams } from "@/utils";
 
-const ShowMore: React.FC<ShowMoreProps> = ({ pageNumber, isNext }) => {
-  const router = useRouter();
-
+const ShowMore: React.FC<ShowMoreProps> = ({ pageNumber, isNext, setLimit }) => {
   const handleNavigation = () => {
     const newLimit = (pageNumber + 1 ) * 10;
-
-    const newPathName = updateSearchParams("limit", `${newLimit}`);
-    router.push(newPathName);
+    setLimit(newLimit);
   };
 
   return (
