@@ -8,9 +8,9 @@ import { SearchManufacturerProps } from "@/types";
 import { manufacturers } from "@/constants";
 
 const SearchManufacturer: React.FC<SearchManufacturerProps> = ({
-  manufacturer,
-  setManufacturer,
-}) => {
+  selected,
+  setSelected,
+}: any) => {
   const [query, setQuery] = useState("");
 
   // Filter manufacturers based on the query, ignoring case and spaces.
@@ -26,10 +26,7 @@ const SearchManufacturer: React.FC<SearchManufacturerProps> = ({
 
   return (
     <div className="search-manufacturer">
-      <Combobox
-        value={manufacturer}
-        onChange={setManufacturer}
-      >
+      <Combobox value={selected} onChange={setSelected}>
         <div className="relative w-full">
           <Combobox.Button className="absolute top-[14px]">
             <Image
@@ -44,7 +41,7 @@ const SearchManufacturer: React.FC<SearchManufacturerProps> = ({
           <Combobox.Input
             className="search-manufacturer__input"
             placeholder="Volkswagen"
-            displayValue={(manufacturer: string) => manufacturer}
+            displayValue={(selected: string) => selected}
             onChange={(event) => setQuery(event.target.value)}
           />
           <Transition
